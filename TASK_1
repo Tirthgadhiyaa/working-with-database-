@@ -1,0 +1,12 @@
+SELECT 
+    c.country AS country_name,
+    ci.city AS city_name,
+    CONCAT(cu.first_name, ' ', cu.last_name) AS customer_name
+FROM country c
+LEFT JOIN city ci
+    ON c.country_id = ci.country_id
+LEFT JOIN address a
+    ON ci.city_id = a.city_id
+LEFT JOIN customer cu
+    ON a.address_id = cu.address_id
+ORDER BY c.country, ci.city, customer_name;
